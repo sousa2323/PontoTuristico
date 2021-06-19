@@ -24,6 +24,7 @@ from atracoes.api.viewsets import AtracoesViewSet
 from enderecos.api.viewsets import EnderecoViewSet
 from comentarios.api.viewsets import ComentarioViewSet
 from avaliacoes.api.viewsets import AvaliacaoViewSet
+from rest_framework.authtoken import views
 
 router = routers.DefaultRouter()
 router.register(r'pontoturistico', PontoTuristicoViewSet, basename='PontoTuristico')
@@ -34,5 +35,6 @@ router.register(r'avaliacoes', AvaliacaoViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('api-token-auth/', views.obtain_auth_token),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
